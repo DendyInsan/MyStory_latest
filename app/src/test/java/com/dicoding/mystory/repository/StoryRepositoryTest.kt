@@ -15,6 +15,7 @@ import com.dicoding.mystory.adapter.StoryListAdapter
 import com.dicoding.mystory.api.ApiService
 import com.dicoding.mystory.data.DataDummy
 import com.dicoding.mystory.data.FakeApi
+import com.dicoding.mystory.data.PagingDataSource
 import com.dicoding.mystory.data.StoryResponseDB
 import com.dicoding.mystory.database.StoryDatabase
 import com.dicoding.mystory.util.MainDispatcherRule
@@ -52,6 +53,9 @@ class StoryRepositoryTest {
     private val dummyToken = "XSJJDNdkdhduwN"
     private val dummyLocation :Int = 0
     private val context=mock(Context::class.java)
+    private lateinit var pagingDataSource: PagingDataSource
+
+
 
     @Before
     fun setUp()
@@ -68,7 +72,7 @@ class StoryRepositoryTest {
         val dtDummy = dataDummy
         val expectedStories = MutableLiveData<PagingData<StoryResponseDB>>()
         expectedStories.value = PagedTestDataSource.snapshot(dtDummy)
-        `when`(getStory(dummyToken,dummyLocation)).thenReturn(expectedStories)
+        `when`(pagingDataSource.getStories(dummyToken,dummyLocation)).thenReturn(expectedStories)
 
         storyRepository.getStory(dummyToken,0).observeForever {
             val differ = AsyncPagingDataDiffer(
@@ -80,7 +84,7 @@ class StoryRepositoryTest {
             CoroutineScope(Dispatchers.IO).launch {
                 differ.submitData(it)
                 advanceUntilIdle()
-                Mockito.verify(storyRepository).getStory(dummyToken,0)
+                Mockito.verify(pagingDataSource).getStories(dummyToken,dummyLocation)
                 assertNotNull(differ.snapshot())
                 assertEquals(differ.snapshot().size, dataDummy.size)
             }

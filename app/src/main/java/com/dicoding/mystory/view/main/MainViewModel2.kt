@@ -12,7 +12,7 @@ class MainViewModel2(private val storyRepository: StoryRepository) : ViewModel()
 
     fun sending(token:String): LiveData<PagingData<StoryResponseDB>>
     {
-            return  storyRepository.getStory(token).cachedIn(viewModelScope)
+            return  storyRepository.getStory(token,0).cachedIn(viewModelScope)
 
     }
 }

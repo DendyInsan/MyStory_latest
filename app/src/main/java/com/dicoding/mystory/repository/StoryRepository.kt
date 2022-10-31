@@ -8,22 +8,33 @@ import androidx.paging.*
 import com.dicoding.mystory.api.ApiConfig
 import com.dicoding.mystory.api.ApiService
 import com.dicoding.mystory.data.FileUploadResponse
-import com.dicoding.mystory.data.PagingDataSource
 import com.dicoding.mystory.data.StoryRemoteMediator
 import com.dicoding.mystory.data.StoryResponseDB
 import com.dicoding.mystory.database.StoryDatabase
 import com.dicoding.mystory.model.Result
-import kotlinx.coroutines.flow.Flow
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class StoryRepository(  private val pagingDataSource: PagingDataSource) {
+class StoryRepository(private val storyDatabase: StoryDatabase, private val apiService: ApiService) {
 
-    fun getStory(token: String): LiveData<PagingData<StoryResponseDB>> {
-        return pagingDataSource.getStories(token, 0)
+
+    fun getStory(token:String, location:Int): LiveData<PagingData<StoryResponseDB>> {
+
+        @OptIn(ExperimentalPagingApi::class)
+        return Pager(
+            config = PagingConfig(
+                pageSize = 5
+            ),
+
+            remoteMediator = StoryRemoteMediator(storyDatabase, apiService, token, location),
+            pagingSourceFactory = {
+                storyDatabase.storyDao().getAllStory()
+            }
+
+        ).liveData
     }
 
     fun storyAdd(token:String, photo: MultipartBody.Part,  description: RequestBody, lat:RequestBody, lon:RequestBody): LiveData<Result<FileUploadResponse>> = liveData {
@@ -43,11 +54,11 @@ companion object {
     private var INSTANCE: StoryRepository? = null
 
     fun getInstance(
-        pagingDataSource: PagingDataSource,
-
+        storyDatabase: StoryDatabase,
+        apiService: ApiService
     ): StoryRepository {
         return INSTANCE ?: synchronized(this) {
-            val instance = StoryRepository(pagingDataSource)
+            val instance = StoryRepository(storyDatabase, apiService)
             INSTANCE = instance
             instance
         }
