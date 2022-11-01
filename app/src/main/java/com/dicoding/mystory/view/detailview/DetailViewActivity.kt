@@ -21,7 +21,6 @@ import com.dicoding.mystory.R
 import com.dicoding.mystory.adapter.StoryListAdapter
 import com.dicoding.mystory.data.StoryResponseDB
 import com.dicoding.mystory.databinding.ActivityDetailViewBinding
-import com.dicoding.mystory.model.UserPreference
 import com.dicoding.mystory.factory.ViewModelFactory
 import com.dicoding.mystory.view.login.LoginActivity
 import com.dicoding.mystory.view.main.MainActivity

@@ -47,7 +47,7 @@ class UserPreference (
             if (result.error==false )
             {
                 this@UserPreference.login()
-                val logins = UserModel(result.loginResult?.token!!,result.loginResult?.name!!,true)
+                val logins = UserModel(result.loginResult?.token!!,result.loginResult.name!!,true)
                 this@UserPreference.saveUser(logins)
             }
 

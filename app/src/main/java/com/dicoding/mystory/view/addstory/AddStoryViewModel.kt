@@ -7,8 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.dicoding.mystory.model.UserModel
 import com.dicoding.mystory.model.UserPreference
 import kotlinx.coroutines.launch
-import okhttp3.MultipartBody
-import okhttp3.RequestBody
+
 
 class AddStoryViewModel(private val pref: UserPreference) : ViewModel() {
 

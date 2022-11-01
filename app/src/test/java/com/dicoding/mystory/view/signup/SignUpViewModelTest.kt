@@ -6,7 +6,6 @@ import com.dicoding.mystory.data.DataDummy
 import com.dicoding.mystory.data.RegisterResponse
 import com.dicoding.mystory.model.UserPreference
 import com.dicoding.mystory.model.Result
-import kotlinx.coroutines.test.runTest
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Rule
@@ -14,7 +13,6 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.Mockito
-import org.mockito.MockitoAnnotations
 import org.mockito.junit.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner::class)

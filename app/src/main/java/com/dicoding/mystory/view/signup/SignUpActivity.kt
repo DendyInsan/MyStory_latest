@@ -11,7 +11,6 @@ import android.text.TextWatcher
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
@@ -19,7 +18,6 @@ import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
 import com.dicoding.mystory.R
 import com.dicoding.mystory.databinding.ActivitySignUpBinding
-import com.dicoding.mystory.model.UserPreference
 import com.dicoding.mystory.factory.ViewModelFactory
 import com.dicoding.mystory.ui.InputText
 import com.dicoding.mystory.model.Result

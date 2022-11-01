@@ -1,7 +1,6 @@
 package com.dicoding.mystory.data
 
 import com.dicoding.mystory.api.ApiService
-import retrofit2.Call
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 
@@ -29,7 +28,7 @@ class FakeApi: ApiService {
     }
 
     override suspend fun uploadImage(
-        Authorization:  String,
+        token:  String,
         file: MultipartBody.Part,
         description: RequestBody,
        lat: RequestBody,

@@ -7,12 +7,11 @@ import com.dicoding.mystory.api.ApiService
 import com.dicoding.mystory.data.FileUploadResponse
 import com.dicoding.mystory.data.PagingDataSource
 import com.dicoding.mystory.data.StoryResponseDB
-import com.dicoding.mystory.database.StoryDatabase
 import com.dicoding.mystory.model.Result
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 
-class StoryRepository(private val apiService: ApiService, private val pagingDataSource: PagingDataSource,) {
+class StoryRepository(private val apiService: ApiService, private val pagingDataSource: PagingDataSource) {
 
 
     fun getStory(token:String, location:Int): LiveData<PagingData<StoryResponseDB>> {

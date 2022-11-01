@@ -9,11 +9,6 @@ import okhttp3.RequestBody.Companion.toRequestBody
 import java.lang.reflect.Type
 
 object DataDummy {
-    fun signupResponse() = RegisterResponse(
-
-        false,
-        "User created"
-    )
 
      fun generateGetUser():UserModel{
         return UserModel("THVXDJDJSKALDD","Bapux",true)

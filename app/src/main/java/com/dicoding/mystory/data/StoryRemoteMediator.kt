@@ -63,11 +63,11 @@ class StoryRemoteMediator(
                 val keys = responseData.map {
                     RemoteKeys(id = it.id, prevKey = prevKey, nextKey = nextKey)
                 }
-                keys?.let { database.storyDao() .insertAll(keys) }
+                keys.let { database.storyDao() .insertAll(keys) }
                 val storyMap = responseData.map {
                     with(it){
                         StoryResponseDB(
-                            photoUrl, createdAt, name, description, lon, id.toString(), lat
+                            photoUrl, createdAt, name, description, lon, id, lat
                         )
                     }
                 }

@@ -5,7 +5,6 @@ import android.content.pm.PackageManager
 import android.content.res.Resources
 import android.location.Geocoder
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
@@ -15,8 +14,6 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.dicoding.mystory.R
 import com.dicoding.mystory.databinding.ActivityMapsBinding
-import com.dicoding.mystory.factory.ViewModelFactory
-import com.dicoding.mystory.view.login.LoginViewModel
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -108,7 +105,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             if (result.isNotEmpty()) {
                result.forEach { map ->
                     val latLng = LatLng(map.lat!!, map.lon!!)
-                    val addressName = getAddressName(map.lat!!, map.lon!!)
+                    val addressName = getAddressName(map.lat, map.lon)
                    val title = "Name : " + map.name + " - " + " Description : " + map.description
 
                     mMap.addMarker(

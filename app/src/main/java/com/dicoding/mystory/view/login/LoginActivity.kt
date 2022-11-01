@@ -21,7 +21,6 @@ import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
 import com.dicoding.mystory.R
 import com.dicoding.mystory.databinding.ActivityLoginBinding
-import com.dicoding.mystory.model.UserPreference
 import com.dicoding.mystory.factory.ViewModelFactory
 import com.dicoding.mystory.model.Result
 import com.dicoding.mystory.ui.InputText

@@ -31,7 +31,6 @@ class AddViewModelTest {
     private val dummyToken = "XSJJDNdkdhduwN"
     private var dummyMultipart = DataDummy.generateDummyMultipartFile()
     private var dummyDescription = DataDummy.generateDummyRequestBody()
-    private val dummyResponseError = "error"
     private val dummyLat=DataDummy.generateDummylat()
     private val dummyLon=DataDummy.generateDummylon()
 

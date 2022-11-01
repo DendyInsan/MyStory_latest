@@ -19,7 +19,6 @@ import com.dicoding.mystory.R
 import com.dicoding.mystory.adapter.LoadingStateAdapter
 import com.dicoding.mystory.adapter.StoryListAdapter
 import com.dicoding.mystory.databinding.ActivityMainBinding
-import com.dicoding.mystory.model.UserPreference
 import com.dicoding.mystory.factory.ViewModelFactory
 import com.dicoding.mystory.factory.ViewModelFactoryStory
 import com.dicoding.mystory.view.addstory.AddStoryActivity
