@@ -292,65 +292,6 @@ class AddStoryActivity : AppCompatActivity() {
         }
     }
 
-
-//    private suspend fun uploadImage(token:String) {
-//        val lat: RequestBody?
-//        val lon: RequestBody?
-//        getLocation()
-//        if (location != null){
-//            lat = location?.latitude.toString().toRequestBody("text/plain".toMediaType())
-//            lon = location?.longitude.toString().toRequestBody("text/plain".toMediaType())
-//
-//        }else{
-//            Toast.makeText(this@AddStoryActivity, resources.getString(R.string.empty_location), Toast.LENGTH_SHORT)
-//                .show()
-//            return
-//        }
-//        if (getFile != null) {
-//            showLoading(true)
-//            val file = reduceFileImage(getFile as File)
-//            val description = binding.descEditText.text.toString().toRequestBody("text/plain".toMediaType())
-//            val requestImageFile = file.asRequestBody("image/jpeg".toMediaTypeOrNull())
-//            val imageMultipart: MultipartBody.Part = MultipartBody.Part.createFormData(
-//                "photo",
-//                file.name,
-//                requestImageFile
-//            )
-//
-//            val service = ApiConfig.getApiServiceBearer(token).uploadImage( token,imageMultipart, description,lat,lon)
-//                service.
-//            service.enqueue(object : Callback<FileUploadResponse> {
-//                override fun onResponse(
-//                    call: Call<FileUploadResponse>,
-//                    response: Response<FileUploadResponse>
-//                ) {
-//                    if (response.isSuccessful) {
-//                        showLoading(false)
-//                        val responseBody = response.body()
-//                        if (responseBody != null && !responseBody.error) {
-//                            Toast.makeText(this@AddStoryActivity, responseBody.message, Toast.LENGTH_SHORT).show()
-//                            Intent(this@AddStoryActivity, MainActivity::class.java)
-//                                .apply {
-//                                    startActivity(this)
-//                                }
-//                            finish()
-//                        }
-//                    } else {
-//                        showLoading(false)
-//                        Toast.makeText(this@AddStoryActivity, response.message(), Toast.LENGTH_SHORT).show()
-//                    }
-//                }
-//                override fun onFailure(call: Call<FileUploadResponse>, t: Throwable) {
-//                    showLoading(false)
-//                    Toast.makeText(this@AddStoryActivity, "Failed instance Retrofit", Toast.LENGTH_SHORT).show()
-//                }
-//            })
-//        } else {
-//            showLoading(false)
-//            Toast.makeText(this@AddStoryActivity, R.string.selectpict, Toast.LENGTH_SHORT).show()
-//        }
-//    }
-
     private fun playAnimation() {
 
 

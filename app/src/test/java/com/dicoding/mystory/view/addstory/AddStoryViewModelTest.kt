@@ -48,8 +48,8 @@ class AddStoryViewModelTest {
         Mockito.`when`(pref.getUser()).thenReturn(expectedResponse)
         viewModel.getUser().observeForever {
             Mockito.verify(pref).getUser()
-            Assert.assertNotNull(it)
-            Assert.assertEquals(dataDummy1, it)
+            assertNotNull(it)
+            assertEquals(dataDummy1, it)
         }
     }
 
@@ -60,8 +60,8 @@ class AddStoryViewModelTest {
         Mockito.`when`(pref.getUser()).thenReturn(expectedResponse)
         viewModel.getUser().observeForever {
             Mockito.verify(pref).getUser()
-            Assert.assertNotNull(it)
-            Assert.assertEquals(dataDummy2, it)
+            assertNotNull(it)
+            assertEquals(dataDummy2, it)
         }
 
     }

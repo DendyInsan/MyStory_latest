@@ -37,7 +37,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         binding = ActivityMapsBinding.inflate(layoutInflater)
         setContentView(binding.root)
-//        viewModel = obtainViewModel(this@MapsActivity)
         setupViewModel()
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
@@ -110,8 +109,10 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                result.forEach { map ->
                     val latLng = LatLng(map.lat!!, map.lon!!)
                     val addressName = getAddressName(map.lat!!, map.lon!!)
+                   val title = "Name : " + map.name + " - " + " Description : " + map.description
+
                     mMap.addMarker(
-                        MarkerOptions().position(latLng).title(map.name).snippet(addressName)
+                        MarkerOptions().position(latLng).title(title).snippet(addressName)
                     )
                     boundsBuilder.include(latLng)
 

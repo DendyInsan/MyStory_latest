@@ -1,0 +1,96 @@
+UNIT TEST
+>> Repository
+1. StoryRepository
+   a) Berhasil mendapatkan data Story dengan Paging
+      a.1. Memastikan response sesuai dengan expectedStories
+      a.2. Memastikan metode class Repository terpanggil
+      a.3. Memastikan data nya tidak null
+      a.4. Memastikan data nya sama antara data pengujian dengan data dummy
+   b) Berhasil menambahkan story
+      b.1. Memastikan actual response tidak null
+      b.2. memastikan data expectedResponse sama dengan actual response
+
+2. DataRepository
+   a) Berhasil mendapatkan data dari local DB
+      a.1. Memastikan response sesuai dengan Expected Response
+      a.2. Memastikan fungsi terpanggil dengan baik
+      a.3. Memastikan data nya tidak null
+      a.4. Memastikan size data sama dengan size data pengujian
+
+>> ViewModel
+1. AddStoryViewModelTest
+   a) Berhasil mendapatkan data user dari preference
+      a.1. Memastikan Response sesuai dengan expected Response
+      a.2. Memastikan fungsi dapat terpanggil
+      a.3. Memastikan datanya tidak null
+      a.4. Memastikan datanya sama dengan data pengujian
+   b) Tidak Berhasil mendapat data user dari preference
+      b.1. Memastikan response sesuai dengan data expected response
+      b.2. Memastikan fungsi dapat terpanggil 
+      b.3. memastikan datanya sama dengan data pengujian
+2. AddViewModelTest
+   a) Berhasil menambahkan story
+      a.1. Memastikan response sesuai dengan expectedResponse
+      a.2. Memastikan function addstory dapat terpanggil
+      a.3. Memastikan datanya tidak Null
+      a.4. Memastikan Actual response Result Success
+      a.5. memastikan data Actualnya sama dengan data pengujian
+3. DetailViewModelTest
+   a) Berhasil mendapatkan data user dari preference
+      a.1. Memastikan Response sesuai dengan expected Response
+      a.2. Memastikan fungsi dapat terpanggil
+      a.3. Memastikan datanya tidak null
+      a.4. Memastikan datanya sama dengan data pengujian
+   b) Berhasil Logout
+      b.1. Memastikan fungsi dapat terpanggil
+4. LoginViewModelTest
+   a) Berhasil Login
+      a.1. Memastikan Response sesuai dengan expected Response
+      a.2. Memastikan function login dapat terpanggil
+      a.3. Memastikan Response tidak null
+      a.4. Memastikan nilai yang didapatkan Result.Success()
+      a.5. Memastikan data response sama dengan data pengujian
+   b) Tidak berhasil Login
+      b.1. Memastikan nilai yang didapatkan Result.Error
+      b.2. Memastikan actual respose False
+      b.3. Memastikan actual respose Error
+5. MainViewModelTest
+   a) Berhasil mendapatkan data user dari preference
+      a.1. Memastikan Response sesuai dengan expected Response
+      a.2. Memastikan fungsi dapat terpanggil
+      a.3. Memastikan datanya tidak null
+      a.4. Memastikan datanya sama dengan data pengujian
+   b) Tidak Berhasil mendapat data user dari preference
+      b.1. Memastikan response sesuai dengan data expected response
+      b.2. Memastikan fungsi dapat terpanggil 
+      b.3. memastikan datanya sama dengan data pengujian
+   c) Berhasil Logout
+      c.1. Memastikan fungsi dapat terpanggil
+6. MainViewModelTest2
+   a) Berhasil Mendapatkan Data Story Paging
+      a.1. Memastikan response sesuai dengan expected Response
+      a.2. Memastikan metode di class repository terpanggil
+      a.3. Memastikan response tidak null
+      a.4. Memastikan data response sama dengan data pengujian
+7. MapsViewModel2Test
+   a) Berhasil mendapatkan data dari local Db
+      a.1. Memastikan response sesuai dengan expected Response
+      a.2. Memastikan metode di class repository terpanggil
+      a.3. Memastikan response tidak null
+      a.4. Memastikan data response sama dengan data pengujian
+8. SignupModelTest
+   a) a.1. Memastikan response sesuai dengan expected Response
+      a.2. Memastikan metode di class repository terpanggil
+      a.3. Memastikan response tidak null
+      a.4. Memastikan actual response Result Success
+      a.5. Memastikan data response sama dengan data pengujian
+   b) b.1. Memastikan nilai yang didapatkan bukan Resource.Success()
+      b.2. Memastikan nilai yang didapatkan Resource.Error()
+      b.3. Memastikan pesan exception tidak null
+      b.4. Memastikan response sesuai dengan expectedResponse
+      
+  
+
+
+ 
+     

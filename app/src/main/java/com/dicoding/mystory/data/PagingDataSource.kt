@@ -23,4 +23,14 @@ class PagingDataSource (
 
         ).liveData
     }
+
+    companion object {
+
+        fun getPaging(
+            storyDatabase: StoryDatabase,
+            apiService: ApiService,
+        ): PagingDataSource {
+            return PagingDataSource(storyDatabase, apiService)
+        }
+    }
 }

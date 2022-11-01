@@ -53,7 +53,7 @@ class SignUpViewModelTest{
     }
 
     @Test
-    fun `when Network Error Should Return Error`() {
+    fun `when Register Failed Should Return Error`() {
         val expectedResponse = MutableLiveData<Result<RegisterResponse>>()
         expectedResponse.value = Result.Error("Error")
         Mockito.`when`(signupViewModel.register(dummyName,dummyEmail,dummyPassword)).thenReturn(expectedResponse)

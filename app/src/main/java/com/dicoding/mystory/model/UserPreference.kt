@@ -1,29 +1,16 @@
 package com.dicoding.mystory.model
 
-import android.content.Intent
-import android.util.Log
-import android.widget.Toast
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.asLiveData
 import androidx.lifecycle.liveData
-import com.dicoding.mystory.api.ApiConfig
 import com.dicoding.mystory.api.ApiService
 import com.dicoding.mystory.data.*
-import com.dicoding.mystory.view.main.MainActivity
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.launch
-import okhttp3.MultipartBody
-import okhttp3.RequestBody
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-
 
 class UserPreference (
     private val dataStore: DataStore<Preferences>,
@@ -47,8 +34,7 @@ class UserPreference (
             val result = apiService.registeruser(signUpInfo)
             emit(Result.Success(result))
         } catch (e: Exception) {
-            Log.d("UserRepository", "Register: ${e.message.toString()} ")
-            emit(Result.Error(e.message.toString()))
+             emit(Result.Error(e.message.toString()))
         }
     }
 
@@ -66,8 +52,7 @@ class UserPreference (
             }
 
         } catch (e: Exception) {
-            Log.d("UserRepository", "Login: ${e.message.toString()} ")
-            emit(Result.Error(e.message.toString()))
+                emit(Result.Error(e.message.toString()))
         }
     }
 

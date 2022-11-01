@@ -1,15 +1,9 @@
 package com.dicoding.mystory.view.map
 
-import android.app.Application
 import android.content.Context
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.dicoding.mystory.data.StoryResponseDB
-import com.dicoding.mystory.di.Injection
 import com.dicoding.mystory.di.MapInjection
-import com.dicoding.mystory.di.UserInjection
-import com.dicoding.mystory.factory.ViewModelFactory
 import com.dicoding.mystory.repository.DataRepository
 
 class MapsViewModel2 (private val dataRepository: DataRepository) : ViewModel() {
@@ -18,7 +12,6 @@ class MapsViewModel2 (private val dataRepository: DataRepository) : ViewModel() 
     fun getAllStoryMap() = dataRepository.getAllStoryMap()
 }
 
-//class ViewModelFactoryMap private constructor(private val mApplication: Application) : ViewModelProvider.NewInstanceFactory()  {
 class ViewModelFactoryMap (private val dataRepository: DataRepository) : ViewModelProvider.NewInstanceFactory()  {
     companion object {
         @Volatile
@@ -27,15 +20,7 @@ class ViewModelFactoryMap (private val dataRepository: DataRepository) : ViewMod
             INSTANCE ?: synchronized(this) {
                 INSTANCE ?: ViewModelFactoryMap(MapInjection.provideDataRepository(context))
             }.also { INSTANCE= it }
-//        @JvmStatic
-//        fun getInstance(application: Application): ViewModelFactoryMap {
-//            if (INSTANCE == null) {
-//                synchronized(ViewModelFactoryMap::class.java) {
-//                    INSTANCE = ViewModelFactoryMap(application)
-//                }
-//            }
-//            return INSTANCE as ViewModelFactoryMap
-//        }
+
     }
 
     @Suppress("UNCHECKED_CAST")

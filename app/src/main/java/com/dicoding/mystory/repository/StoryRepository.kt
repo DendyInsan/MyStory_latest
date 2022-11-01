@@ -1,40 +1,23 @@
 package com.dicoding.mystory.repository
 
-import android.content.Intent
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import androidx.paging.*
-import com.dicoding.mystory.api.ApiConfig
 import com.dicoding.mystory.api.ApiService
 import com.dicoding.mystory.data.FileUploadResponse
-import com.dicoding.mystory.data.StoryRemoteMediator
+import com.dicoding.mystory.data.PagingDataSource
 import com.dicoding.mystory.data.StoryResponseDB
 import com.dicoding.mystory.database.StoryDatabase
 import com.dicoding.mystory.model.Result
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
-class StoryRepository(private val storyDatabase: StoryDatabase, private val apiService: ApiService) {
+class StoryRepository(private val apiService: ApiService, private val pagingDataSource: PagingDataSource,) {
 
 
     fun getStory(token:String, location:Int): LiveData<PagingData<StoryResponseDB>> {
 
-        @OptIn(ExperimentalPagingApi::class)
-        return Pager(
-            config = PagingConfig(
-                pageSize = 5
-            ),
-
-            remoteMediator = StoryRemoteMediator(storyDatabase, apiService, token, location),
-            pagingSourceFactory = {
-                storyDatabase.storyDao().getAllStory()
-            }
-
-        ).liveData
+        return pagingDataSource.getStories(token, location)
     }
 
     fun storyAdd(token:String, photo: MultipartBody.Part,  description: RequestBody, lat:RequestBody, lon:RequestBody): LiveData<Result<FileUploadResponse>> = liveData {
@@ -54,11 +37,12 @@ companion object {
     private var INSTANCE: StoryRepository? = null
 
     fun getInstance(
-        storyDatabase: StoryDatabase,
-        apiService: ApiService
+
+        apiService: ApiService,
+        pagingDataSource: PagingDataSource
     ): StoryRepository {
         return INSTANCE ?: synchronized(this) {
-            val instance = StoryRepository(storyDatabase, apiService)
+            val instance = StoryRepository( apiService,pagingDataSource)
             INSTANCE = instance
             instance
         }

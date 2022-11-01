@@ -1,16 +1,11 @@
 package com.dicoding.mystory.data
 
-import androidx.lifecycle.LiveData
 import com.dicoding.mystory.model.UserModel
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
-import retrofit2.Call
-import retrofit2.Response
-import retrofit2.await
-import java.io.File
 import java.lang.reflect.Type
 
 object DataDummy {
@@ -64,6 +59,10 @@ object DataDummy {
             false,
             "success"
         )
+    }
+
+    fun generateDummyAddStorySuccess():FileUploadResponse {
+        return FileUploadResponse(false,"Success")
     }
 
     fun generateDummyStoriesResponse(): StoryResponse {

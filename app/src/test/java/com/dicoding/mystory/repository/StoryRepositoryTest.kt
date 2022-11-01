@@ -2,25 +2,17 @@ package com.dicoding.mystory.repository
 
 import android.content.Context
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.liveData
 import androidx.paging.AsyncPagingDataDiffer
 import androidx.paging.PagingData
-import androidx.paging.PagingSource
-import androidx.paging.PagingState
 import androidx.recyclerview.widget.ListUpdateCallback
 import androidx.room.Room
 import com.dicoding.mystory.adapter.StoryListAdapter
 import com.dicoding.mystory.api.ApiService
-import com.dicoding.mystory.data.DataDummy
-import com.dicoding.mystory.data.FakeApi
-import com.dicoding.mystory.data.PagingDataSource
-import com.dicoding.mystory.data.StoryResponseDB
+import com.dicoding.mystory.data.*
 import com.dicoding.mystory.database.StoryDatabase
 import com.dicoding.mystory.util.MainDispatcherRule
 import com.dicoding.mystory.util.PagedTestDataSource
-import com.dicoding.mystory.view.signup.getOrAwaitValue
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -28,7 +20,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.*
-
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -52,7 +43,12 @@ class StoryRepositoryTest {
     private val dataDummy = DataDummy.storyFromDb()
     private val dummyToken = "XSJJDNdkdhduwN"
     private val dummyLocation :Int = 0
+    private val dummyPhoto=DataDummy.generateDummyMultipartFile()
+    private var dummyDescription = DataDummy.generateDummyRequestBody()
+    private val dummyLat=DataDummy.generateDummylat()
+    private val dummyLon=DataDummy.generateDummylon()
     private val context=mock(Context::class.java)
+    @Mock
     private lateinit var pagingDataSource: PagingDataSource
 
 
@@ -62,13 +58,13 @@ class StoryRepositoryTest {
     {
         apiService = FakeApi()
         storyDatabase = Room.inMemoryDatabaseBuilder(context, StoryDatabase::class.java).build()
-       storyRepository = StoryRepository(storyDatabase,apiService)
+        storyRepository = StoryRepository(apiService, pagingDataSource)
     }
     @get:Rule
     val mainDispatcherRule = MainDispatcherRule()
 
     @Test
-    fun `When getStory Success `() = runTest {
+    fun `When get List Story Success `() = runTest {
         val dtDummy = dataDummy
         val expectedStories = MutableLiveData<PagingData<StoryResponseDB>>()
         expectedStories.value = PagedTestDataSource.snapshot(dtDummy)
@@ -92,6 +88,15 @@ class StoryRepositoryTest {
         }
 
     }
+
+    @Test
+    fun `When Add Story Succes`() = runTest {
+        val expectedResponse = DataDummy.generateDummyAddStorySuccess()
+        val actualResponse = apiService.uploadImage(dummyToken, dummyPhoto, dummyDescription,dummyLat, dummyLon)
+        assertNotNull(actualResponse)
+        assertEquals(expectedResponse, actualResponse)
+    }
+
 
     private val noopListUpdateCallback = object : ListUpdateCallback {
         override fun onInserted(position: Int, count: Int) {}
