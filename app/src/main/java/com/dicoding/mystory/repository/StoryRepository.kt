@@ -19,7 +19,7 @@ class StoryRepository(private val apiService: ApiService, private val pagingData
         return pagingDataSource.getStories(token, location)
     }
 
-    fun storyAdd(token:String, photo: MultipartBody.Part,  description: RequestBody, lat:RequestBody, lon:RequestBody): LiveData<Result<FileUploadResponse>> = liveData {
+    fun storyAdd(token:String, photo: MultipartBody.Part,  description: RequestBody, lat:RequestBody?, lon:RequestBody?): LiveData<Result<FileUploadResponse>> = liveData {
         emit(Result.Loading)
         try {
             val result = apiService .uploadImage("Bearer $token", photo, description,lat,lon)

@@ -13,6 +13,7 @@ import com.dicoding.mystory.data.*
 import com.dicoding.mystory.database.StoryDatabase
 import com.dicoding.mystory.util.MainDispatcherRule
 import com.dicoding.mystory.util.PagedTestDataSource
+import com.dicoding.mystory.view.signup.getOrAwaitValue
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -29,6 +30,7 @@ import org.mockito.Mockito
 import org.mockito.Mockito.`when`
 import org.mockito.Mockito.mock
 import org.mockito.junit.MockitoJUnitRunner
+import com.dicoding.mystory.model.Result
 
 @ExperimentalCoroutinesApi
 @RunWith(MockitoJUnitRunner::class)
@@ -90,11 +92,15 @@ class StoryRepositoryTest {
     }
 
     @Test
-    fun `When Add Story Succes`() = runTest {
+    fun `When Add Story Success`() = runTest {
         val expectedResponse = DataDummy.generateDummyAddStorySuccess()
-        val actualResponse = apiService.uploadImage(dummyToken, dummyPhoto, dummyDescription,dummyLat, dummyLon)
-        assertNotNull(actualResponse)
-        assertEquals(expectedResponse, actualResponse)
+        val actualResponse = storyRepository.storyAdd (dummyToken, dummyPhoto, dummyDescription,dummyLat, dummyLon).getOrAwaitValue()
+        if (actualResponse !is Result.Loading) {
+            assertNotNull(actualResponse)
+            assertTrue(actualResponse is Result.Success)
+            assertFalse(actualResponse is Result.Error)
+            assertEquals(expectedResponse.message, (actualResponse as Result.Success).data.message)
+        }
     }
 
 

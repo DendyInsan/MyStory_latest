@@ -7,7 +7,8 @@ UNIT TEST
       a.3. Memastikan data nya tidak null
       a.4. Memastikan data nya sama antara data pengujian dengan data dummy
    b) Berhasil menambahkan story
-      b.1. Memastikan actual response tidak null
+      b.1. Memastikan Fungsi dapat dipanggil
+	  b.2. Memastikan Result Success
       b.2. memastikan data expectedResponse sama dengan actual response
 
 2. DataRepository
@@ -28,6 +29,9 @@ UNIT TEST
       b.1. Memastikan response sesuai dengan data expected response
       b.2. Memastikan fungsi dapat terpanggil 
       b.3. memastikan datanya sama dengan data pengujian
+   c) Berhasil Logout
+      c.1. Memastikan fungsi dapat terpanggil
+	  
 2. AddViewModelTest
    a) Berhasil menambahkan story
       a.1. Memastikan response sesuai dengan expectedResponse
@@ -35,14 +39,20 @@ UNIT TEST
       a.3. Memastikan datanya tidak Null
       a.4. Memastikan Actual response Result Success
       a.5. memastikan data Actualnya sama dengan data pengujian
+	  
 3. DetailViewModelTest
    a) Berhasil mendapatkan data user dari preference
       a.1. Memastikan Response sesuai dengan expected Response
       a.2. Memastikan fungsi dapat terpanggil
       a.3. Memastikan datanya tidak null
       a.4. Memastikan datanya sama dengan data pengujian
-   b) Berhasil Logout
-      b.1. Memastikan fungsi dapat terpanggil
+   b) Tidak Berhasil mendapat data user dari preference
+      b.1. Memastikan response sesuai dengan data expected response
+      b.2. Memastikan fungsi dapat terpanggil 
+      b.3. memastikan datanya sama dengan data pengujian
+   c) Berhasil Logout
+      c.1. Memastikan fungsi dapat terpanggil
+	  
 4. LoginViewModelTest
    a) Berhasil Login
       a.1. Memastikan Response sesuai dengan expected Response
@@ -54,6 +64,7 @@ UNIT TEST
       b.1. Memastikan nilai yang didapatkan Result.Error
       b.2. Memastikan actual respose False
       b.3. Memastikan actual respose Error
+	  
 5. MainViewModelTest
    a) Berhasil mendapatkan data user dari preference
       a.1. Memastikan Response sesuai dengan expected Response
@@ -66,25 +77,36 @@ UNIT TEST
       b.3. memastikan datanya sama dengan data pengujian
    c) Berhasil Logout
       c.1. Memastikan fungsi dapat terpanggil
+	  
 6. MainViewModelTest2
    a) Berhasil Mendapatkan Data Story Paging
       a.1. Memastikan response sesuai dengan expected Response
       a.2. Memastikan metode di class repository terpanggil
       a.3. Memastikan response tidak null
       a.4. Memastikan data response sama dengan data pengujian
+	  
 7. MapsViewModel2Test
    a) Berhasil mendapatkan data dari local Db
       a.1. Memastikan response sesuai dengan expected Response
       a.2. Memastikan metode di class repository terpanggil
       a.3. Memastikan response tidak null
       a.4. Memastikan data response sama dengan data pengujian
+   b) Tidak Berhasil mendapatkan data dari local Db
+	  b.1. Memastikan response sesuai dengan expected Response
+	  b.2. Memastikan metode di class repository terpanggil
+	  b.3. Memastikan response tidak null
+	  b.4. Memastikan data nya empty
+	  b.5. Memastikan data response sama dengan data pengujian
+	  
 8. SignupModelTest
-   a) a.1. Memastikan response sesuai dengan expected Response
+   a) Berhasil Melakukan Register
+      a.1. Memastikan response sesuai dengan expected Response
       a.2. Memastikan metode di class repository terpanggil
       a.3. Memastikan response tidak null
       a.4. Memastikan actual response Result Success
       a.5. Memastikan data response sama dengan data pengujian
-   b) b.1. Memastikan nilai yang didapatkan bukan Resource.Success()
+   b) Tidak Berhasil Melakukan Register
+      b.1. Memastikan nilai yang didapatkan bukan Resource.Success()
       b.2. Memastikan nilai yang didapatkan Resource.Error()
       b.3. Memastikan pesan exception tidak null
       b.4. Memastikan response sesuai dengan expectedResponse

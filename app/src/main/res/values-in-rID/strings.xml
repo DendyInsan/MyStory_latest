@@ -46,11 +46,12 @@
     <string name="add_widget">Tambah Widget</string>
     <string name="app_widget_description">deskripsi widget</string>
     <string name="retry">Ulangi !!</string>
-    <string name="empty_location">Data Lokasi tidak ada, Silahkan aktifkan GPS anda </string>
+    <string name="empty_location">Data Lokasi tidak ada </string>
     <string name="title_activity_maps">Maps</string>
     <string name="normal_type">Normal</string>
     <string name="satellite_type">Satellite</string>
     <string name="terrain_type">Terrain</string>
     <string name="hybrid_type">Hybrid</string>
     <string name="no_data_location">Tidak ada data dengan lokasi !!</string>
+    <string name="no_location_granted">tidak ada ijin mendapatkan lokasi </string>
 </resources>

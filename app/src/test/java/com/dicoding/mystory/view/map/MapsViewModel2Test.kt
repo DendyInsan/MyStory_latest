@@ -58,6 +58,7 @@ internal class MapsViewModel2Test {
             Mockito.verify(dataRepository).getAllStoryMap()
             Assert.assertNotNull(it)
             Assert.assertTrue(it.isEmpty())
+            assertEquals(it.size, expectedResponse.value?.size)
         }
 
     }

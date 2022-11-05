@@ -31,8 +31,8 @@ class FakeApi: ApiService {
         token:  String,
         file: MultipartBody.Part,
         description: RequestBody,
-       lat: RequestBody,
-       lon: RequestBody,
+       lat: RequestBody?,
+       lon: RequestBody?,
     ):FileUploadResponse {
         return dummyStoryUpRes
     }

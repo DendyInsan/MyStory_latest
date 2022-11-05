@@ -12,6 +12,7 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
@@ -96,13 +97,13 @@ class AddStoryActivity : AppCompatActivity() {
         binding = ActivityAddStoryBinding.inflate(layoutInflater)
         setContentView(binding.root)
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
-        if (!allPermissionsGranted()) {
-            ActivityCompat.requestPermissions(
-                this,
-                REQUIRED_PERMISSIONS,
-                REQUEST_CODE_PERMISSIONS
-            )
-        }
+//        if (!allPermissionsGranted()) {
+//            ActivityCompat.requestPermissions(
+//                this,
+//                REQUIRED_PERMISSIONS,
+//                REQUEST_CODE_PERMISSIONS
+//            )
+//        }
         val factory: ViewModelFactory = ViewModelFactory.getInstance(this)
         viewModel = ViewModelProvider(
             this,
@@ -205,18 +206,7 @@ class AddStoryActivity : AppCompatActivity() {
 
     private fun uploadImage(token:String)
     {
-        val lat: RequestBody?
-        val lon: RequestBody?
-       getLocation()
-        if (location != null){
-            lat = location?.latitude.toString().toRequestBody("text/plain".toMediaType())
-            lon = location?.longitude.toString().toRequestBody("text/plain".toMediaType())
 
-        }else{
-            Toast.makeText(this@AddStoryActivity, resources.getString(R.string.empty_location), Toast.LENGTH_SHORT)
-                .show()
-            return
-        }
         if (getFile != null) {
             showLoading(true)
             val file = reduceFileImage(getFile as File)
@@ -228,6 +218,18 @@ class AddStoryActivity : AppCompatActivity() {
                 file.name,
                 requestImageFile
             )
+
+            var lat: RequestBody?=null
+            var lon: RequestBody?=null
+
+            if (location != null){
+
+                lat = location?.latitude.toString().toRequestBody("text/plain".toMediaTypeOrNull())
+                lon = location?.longitude.toString().toRequestBody("text/plain".toMediaTypeOrNull())
+
+            }
+
+
              viewModel2.addStory(token,imageMultipart,description,lat,lon).observe(this) { result ->
                 if(result != null)
                 {
@@ -239,6 +241,8 @@ class AddStoryActivity : AppCompatActivity() {
                         is Result.Success ->{
                             showLoading(false)
                             val data = result.data
+                            Log.d("data"," data : ${data.error}")
+
                             if (data.error)
                             {
                                 AlertDialog.Builder(this).apply {
@@ -289,6 +293,9 @@ class AddStoryActivity : AppCompatActivity() {
 
             }
 
+        }else
+        {
+            Toast.makeText(this, getString( R.string.selectpict), Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -330,7 +337,7 @@ class AddStoryActivity : AppCompatActivity() {
                     getLocation()
                 }
                 else -> {
-                    // No location access granted.
+                    Toast.makeText(this, R.string.no_location_granted, Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -357,6 +364,7 @@ class AddStoryActivity : AppCompatActivity() {
                 .addOnSuccessListener { location: Location? ->
                     if (location == null)
                         Toast.makeText(this, R.string.empty_location, Toast.LENGTH_SHORT).show()
+
                     else {
                         this.location =location
                     }
